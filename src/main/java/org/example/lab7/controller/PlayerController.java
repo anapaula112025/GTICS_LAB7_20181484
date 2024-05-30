@@ -39,6 +39,10 @@ public class PlayerController {
 
         HashMap<String, Object> responseJson = new HashMap<>();
 
+        if (playerRepository.maxmmr(player.getRegion())< player.getMmr()){
+            player.setPosition(1);
+        }
+
         playerRepository.save(player);
         if (fetchId) {
             responseJson.put("id", player.getId());
@@ -86,8 +90,7 @@ public class PlayerController {
         }
     }
 
-    // Eliminar un producto po ID
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "player/{id}")
     public ResponseEntity<HashMap<String, Object>> borrar(@PathVariable("id") String idStr){
 
         HashMap<String, Object> rpta = new HashMap<>();
