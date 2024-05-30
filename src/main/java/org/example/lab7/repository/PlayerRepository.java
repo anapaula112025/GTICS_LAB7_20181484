@@ -16,4 +16,6 @@ public interface PlayerRepository extends JpaRepository<Player, Integer> {
     @Query(value = "SELECT max(mmr) FROM players where region = ?1", nativeQuery = true)
     int maxmmr(String region);
 
+
+
 }

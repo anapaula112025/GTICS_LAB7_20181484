@@ -39,9 +39,18 @@ public class PlayerController {
 
         HashMap<String, Object> responseJson = new HashMap<>();
 
-        if (playerRepository.maxmmr(player.getRegion())< player.getMmr()){
-            player.setPosition(1);
+        List<Player> players = playerRepository.findAll();
+
+        for(Player jugador : players)
+        {
+            if (jugador.getMmr()< player.getMmr()){
+                player.setPosition(jugador.getMmr());
+                jugador.setPosition(jugador.getMmr()-1);
+
+            }
         }
+
+
 
         playerRepository.save(player);
         if (fetchId) {
